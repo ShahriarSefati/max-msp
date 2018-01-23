@@ -25,7 +25,7 @@ include_directories(
  
 link_directories("C:/boost_1_66_0/stage/lib/")
    
-add_executable (boost boostTest.cpp)
+add_executable (boost boostTest.cpp tnyosc.hpp)
 target_link_libraries(boost 
   ${Boost_FILESYSTEM_LIBRARY}
   ${Boost_System_Library}
