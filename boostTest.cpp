@@ -2,12 +2,15 @@
 #include <boost/asio.hpp>
 #include <oscpp/client.hpp>
 #include "tnyosc.hpp"
+#include "udpPacket.h"
 
-#define HOST ("192.168.0.102")
+//#define HOST ("192.168.0.102")
+#define HOST ("10.194.102.78")
 #define PORT ("11111")
 
 using namespace boost::asio;
 
+/*
 size_t makePacket(void* buffer, size_t size)
 {
 	// Construct a packet
@@ -46,26 +49,10 @@ size_t makePacket(void* buffer, size_t size)
 		.closeBundle();
 	return packet.size();
 }
+*/
 
 int main(){
-  
-  std::cout << "Hello!" << std::endl;
   /*
-  io_service io_service;
-  ip::udp::socket socket(io_service);
-  ip::udp::endpoint remote_endpoint;
-
-  socket.open(ip::udp::v4());
-  
-  remote_endpoint = ip::udp::endpoint(ip::address::from_string("192.168.0.102"), 11111);
-  boost::system::error_code err;
-
-  float data[] = {1.0};
-  void *buffer = 0;
-  size_t bufferSize = 20;
-  makePacket(buffer, bufferSize);
-  */
-
   // boost::asio library for sending UDP packets
   boost::asio::io_service io_service;
   ip::udp::socket socket(io_service, ip::udp::endpoint(ip::udp::v4(), 0));
@@ -75,29 +62,26 @@ int main(){
 
   // create a OSC message
   tnyosc::Message msg("/test");
-
-
-float i = 0; 
+  */
+  udpPacket packet;
+  float i = 0; 
 
   while(true){
-    //socket.send_to(buffer(data), remote_endpoint, 0, err);
-	//socket.send_to(buffer, remote_endpoint, 0, err);
 	  
 	  //msg.set_address("/test");
 	  // create message
 	  i = 127 * ((float)rand() / (RAND_MAX));
 	  
-	  std::cout << i << std::endl;
+	  packet.sendMessage(i);
+	  /*
 	  msg.append(i);
-
 	// send the message 
 	  socket.send_to(boost::asio::buffer(msg.data(), msg.size()), *iterator);
-	  
 	  Sleep(500);  
-	  msg.clearData();
+	  msg.clearData();*/
   }
 
-  socket.close();
+  //socket.close();
   
   return 0;
 }
