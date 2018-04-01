@@ -1,5 +1,5 @@
-#ifndef _UDP_PACKET_H
-#define _UDP_PACKET_H
+#ifndef _AUDIO_UDP_PACKET_H
+#define _AUDIO_UDP_PACKET_H
 
 #include <iostream>
 #include <boost/asio.hpp>
@@ -11,11 +11,11 @@ using boost::asio::ip::udp;
 #define HOST ("10.194.102.78")
 #define PORT ("11111")
 
-class udpPacket
+class AudioUdpPacket
 {
 public:
-	udpPacket();
-	~udpPacket();
+	AudioUdpPacket();
+	~AudioUdpPacket();
 
 	void sendMessage(float i);
 
@@ -31,4 +31,4 @@ private:
 
 };
 
-#endif _UDP_PACKET_H
+#endif _AUDIO_UDP_PACKET_H
